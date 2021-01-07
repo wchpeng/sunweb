@@ -1,0 +1,87 @@
+<template>
+    <!-- 直播课程 -->
+    <div class="container">
+        <div class="class_block1 mb-4">
+            <div class="row">
+                <div class="col mt-4 mb-3">
+                    <div class="h5 float-left text-dark">{{data.title}}</div>
+                    <a :href="data.more" class="btn btn-sm btn-link a_button float-right">更多</a>
+                </div>
+            </div>
+            <div class="row">
+                <div v-for="(item,index) in data.items" :key="data.title+index" class="col-3">
+                    <figure class="figure">
+                        <a :href="item.detail_url">
+                            <figure class="figure position-relative" style="overflow:hidden;margin-bottom:0.18rem;border-radius:0.25rem;">
+                            <img :src="item.image" class="figure-img img-fluid rounded img_hover_big" alt="...">
+                            <span class="tag_live">
+                                <img :src="item.tag_image" alt="">
+                            </span>
+                            </figure>
+                        </a>
+                        <figcaption class="figure-caption my-2">
+                            <a :href="item.detail_url" class="no_style_a text-body">{{item.name}}</a>
+                        </figcaption>
+                        <figcaption class="figure-caption">
+                            <a :href="item.user_detail_url" class="no_style_a">
+                                <img :src="item.avatar" class="rounded-circle" alt="" style="width:1.2rem;">
+                            {{item.username}}
+                            </a>
+                            <span v-if="item.free" class="float-right text-success">免费</span>
+                            <span v-else class="float-right text-danger">{{item.price}}元</span>
+                            <span class="float-right mr-2">{{item.student_num}}学员</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'indexClassLive',
+    data(){
+        return {}
+    },
+    props: {
+        data: Object
+    }
+}
+</script>
+
+<style>
+    .no_style_a{
+        color: #6c757d;
+    }
+    .no_style_a:hover{
+        border: none;
+        text-decoration:none
+    }
+    .img_hover_big{
+        margin-bottom: 0;
+        transition:all 200ms ease;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    .img_hover_big:hover{
+        transform:scale(1.07);
+        transition-delay: 0s;
+    }
+    .a_button{
+        border: none;
+        color: #007bff;
+        padding-bottom: 0;
+    }
+    .a_button:hover{
+        border: none;
+        background: #fff;
+    }
+    .tag_live{
+        position: absolute;
+        top: 0;
+        margin-left: .8rem;
+        z-index: 100;
+        display: block;
+    }
+</style>
